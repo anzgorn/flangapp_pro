@@ -1,48 +1,48 @@
 workflows:
   ios-workflow:
-    name: Flangapp PRO iOS without publication
+    name: Flangapp PRO iOS with publication
     max_build_duration: 30
     environment:
       vars:
         XCODE_WORKSPACE: "Runner.xcworkspace"
         XCODE_SCHEME: "Runner"
         APP_STORE_CONNECT_ISSUER_ID: 0f4b1570-ddfa-4aa9-b539-78a5df88ca47
-        APP_STORE_CONNECT_KEY_IDENTIFIER: PGZF46PXCZ
+        APP_STORE_CONNECT_KEY_IDENTIFIER: DLN68UM2S9
         APP_STORE_CONNECT_PRIVATE_KEY: |-
          -----BEGIN PRIVATE KEY-----
-         MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg/M2wl83jjV1hvNVg
-         1zdehvV93qXE0F0UEYeFV8rrSK6gCgYIKoZIzj0DAQehRANCAAQkQFz518Kwhur9
-         HxKg9hdX9FlhYzJoCs7ImXsRhc6o8YmyG6ZAxc82TujvW0bC6cEfJl0qcuJQ5ci6
-         tJpZzIy+
+         MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg2MCQMcv06UPMVcHm
+         ml+oM0lrGXF5U0YJBijM3YxBHPqgCgYIKoZIzj0DAQehRANCAAQ1Vvn5Xw8j2ksn
+         q+L8JGRGO/hNaC48NHJsVx8s7naz2Wij81hi71Zq+2Mx0P3NsLjbCSxTVo9vL7vq
+         oTSCKXDH
          -----END PRIVATE KEY-----
 
         CERTIFICATE_PRIVATE_KEY: |-
          -----BEGIN RSA PRIVATE KEY-----
-         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
+         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
          -----END RSA PRIVATE KEY-----
          
 
@@ -80,7 +80,11 @@ workflows:
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
     publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
       scripts:
         - name: HTTP notification
           script: |
-            curl https://demoapi.flangapp.site/public/observe/notice?uid=5eb013f7-f0ab-3498-9803-e998837e0e5c
+            curl https://demoapi.flangapp.site/public/observe/notice?uid=643e2b9f-b9cf-c980-26f1-d1a7ceafc96a
