@@ -83,4 +83,4 @@ workflows:
       scripts:
         - name: HTTP notification
           script: |
-            curl https://demoapi.flangapp.site/public/observe/notice?uid=a385873c-bf7b-c37d-6cdc-f17b9909914a
+            curl https://demoapi.flangapp.site/public/observe/notice?uid=4aca9c63-fee8-0bf5-d814-4ace63a49a11
