@@ -47,7 +47,7 @@ workflows:
          
 
         BUNDLE_ID: "ru.msk.sovetdoma"
-      flutter: 3.16.7
+      flutter: 3.24.0
       xcode: latest
       cocoapods: default
     scripts:
@@ -65,7 +65,7 @@ workflows:
           xcode-project use-profiles
       - name: Get Flutter packages
         script: |
-          cd . && flutter packages pub get
+          cd . flutter upgrade && flutter packages pub get && flutter pub upgrade --major-versions
       - name: Install pods
         script: |
           find . -name "Podfile" -execdir pod install \;
@@ -83,4 +83,4 @@ workflows:
       scripts:
         - name: HTTP notification
           script: |
-            curl https://demoapi.flangapp.site/public/observe/notice?uid=c0fbbc29-144a-00b9-8f73-532488fe6bf4
+            curl https://demoapi.flangapp.site/public/observe/notice?uid=303a4691-e1de-5029-3e9e-195a1bc2a11c
