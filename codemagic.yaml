@@ -1,6 +1,6 @@
 workflows:
   ios-workflow:
-    name: Flangapp PRO iOS without publication
+    name: Flangapp PRO iOS with publication
     max_build_duration: 30
     environment:
       vars:
@@ -65,7 +65,7 @@ workflows:
           xcode-project use-profiles
       - name: Get Flutter packages
         script: |
-          cd . flutter upgrade && flutter packages pub get && flutter pub upgrade --major-versions
+          cd . && flutter packages pub get
       - name: Install pods
         script: |
           find . -name "Podfile" -execdir pod install \;
@@ -80,7 +80,11 @@ workflows:
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
     publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
       scripts:
         - name: HTTP notification
           script: |
-            curl https://demoapi.flangapp.site/public/observe/notice?uid=303a4691-e1de-5029-3e9e-195a1bc2a11c
+            curl https://demoapi.flangapp.site/public/observe/notice?uid=8a31a21c-1cd3-70d4-d706-3e811bb4bb9c
