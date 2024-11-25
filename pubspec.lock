@@ -149,7 +149,7 @@ packages:
       sha256: "3e9a443a18ecef966fb930c3a76ca5ab6a7aafc0c7b5e14a4a850cf107b09959"
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.0"
+    version: "6.0.0"
   flutter_inappwebview_android:
     dependency: transitive
     description:
@@ -630,5 +630,5 @@ packages:
     source: hosted
     version: "6.5.0"
 sdks:
-  dart: ">=3.5.0 <4.0.0"
-  flutter: ">=3.24.0"
+  dart: ">=3.2.4 <4.0.0"
+  flutter: ">=3.16.0"
