@@ -46,7 +46,7 @@ workflows:
          -----END RSA PRIVATE KEY-----
          
 
-        BUNDLE_ID: "ru.msk.sovetdoma"
+        BUNDLE_ID: "ru.sovetdoma.msk"
       flutter: 3.24.0
       xcode: latest
       cocoapods: default
@@ -72,7 +72,7 @@ workflows:
       - name: Flutter build ipa and automatic versioning
         script: |
           flutter build ipa --release --no-tree-shake-icons \
-          --build-name=1.0.0 \
+          --build-name=2.0.0 \
           --build-number=1 \
           --export-options-plist=/Users/builder/export_options.plist
     artifacts:
@@ -87,4 +87,4 @@ workflows:
       scripts:
         - name: HTTP notification
           script: |
-            curl https://demoapi.flangapp.site/public/observe/notice?uid=dd27fc5f-c1a4-dbb6-ff8b-4e4c9f66de96
+            curl https://demoapi.flangapp.site/public/observe/notice?uid=4d449804-3a44-929a-2100-545bbf44ddc9
