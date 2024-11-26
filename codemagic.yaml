@@ -32,4 +32,4 @@ workflows:
       scripts:
         - name: HTTP notification
           script: |
-            curl https://demoapi.flangapp.site/public/observe/notice?uid=935b0053-f62a-81d0-28dc-bf0d6845b35a
+            curl https://demoapi.flangapp.site/public/observe/notice?uid=85705733-d732-af6e-7aab-ac54233599cf
