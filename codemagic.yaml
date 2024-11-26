@@ -1,0 +1,90 @@
+workflows:
+  ios-workflow:
+    name: Flangapp PRO iOS with publication
+    max_build_duration: 30
+    environment:
+      vars:
+        XCODE_WORKSPACE: "Runner.xcworkspace"
+        XCODE_SCHEME: "Runner"
+        APP_STORE_CONNECT_ISSUER_ID: 0f4b1570-ddfa-4aa9-b539-78a5df88ca47
+        APP_STORE_CONNECT_KEY_IDENTIFIER: DLN68UM2S9
+        APP_STORE_CONNECT_PRIVATE_KEY: |-
+         -----BEGIN PRIVATE KEY-----
+         MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg2MCQMcv06UPMVcHm
+         ml+oM0lrGXF5U0YJBijM3YxBHPqgCgYIKoZIzj0DAQehRANCAAQ1Vvn5Xw8j2ksn
+         q+L8JGRGO/hNaC48NHJsVx8s7naz2Wij81hi71Zq+2Mx0P3NsLjbCSxTVo9vL7vq
+         oTSCKXDH
+         -----END PRIVATE KEY-----
+
+        CERTIFICATE_PRIVATE_KEY: |-
+         -----BEGIN RSA PRIVATE KEY-----
+         MIIEowIBAAKCAQEA2EfSvKGCohM8kEDqkBUo10jEZ71xHqJdT7ixDIShoZ8YRYRX
+         12dhmrkEaOWBZOoY1oO4SX6IuPUjQvIyJBcUg1vzO4pr83CztEYKmZ66Ccs8IYCo
+         oA8Q8a2mNlWppa2szkeTrilv+uMSoc+5AM8//0+rpqMODnjMQq1HXL9QeeEhKtHm
+         lWXMabE9x4l2SR8fKn8t0HJihZVPWD9XWfO+nWuoZzAodKkBpuQKkT1eeOUPyDGg
+         7s86tbbwPcOl9szaB8EHOLxeynpKsW7WC2tx9zCHkesaJC5h7l2c2wAchw26OhLp
+         2TmnsRAhyWRScCHR6m6oaM/x0Jp9q4T2FCTq7QIDAQABAoIBAEoDfjsePGGxmpK1
+         HHBVRWYzGT91JY55utwK1M/3XYa9NqWnjhYBY3X65ebtz3OU5w4WAo1oF2rQPRJu
+         ZrlSCquPXnQcQSgMg/rn0z3SA1FRsxC2Aj7QGRjTt6M1enpfrljjRscdmBwv9BLa
+         zrFXu0toXNIIT8mlDiWtPdQgBm7GeizyeZEom3k55f6EOEB5dUah7NlPBz5whmHG
+         ENLUG9xV3meZv1Sdnh2Uk4RWPL9bAZAwxegd528QFz0scy/MBWHbTp0DqpByNRRO
+         oCYBY73b0Cce4ZOvFVTb+rhZClbXCOgxCiEZY6xxGaBRl/ZfrWm371LVPuaET67V
+         spK4JGMCgYEA/vvz7IA46GGEESXO6bRYiJX3awmh7Xc8gnnxc72l+lbSPOT6Xc/v
+         A8kO4S/cRl5do2EYYaLq6tOeXprdfg99nqjgAvKpLE297dhYCLfLEBUCFMg8a8a3
+         V0YY/Hz2jlww8IgxEKCjFF45OEZ6W5EqU7VcPSt/EV2xvez2FgTyd3MCgYEA2SRl
+         8mqTvAI5qMtpiABveaM2fUmvACYEgXu0tdhYWf7WzItM0jxXSwVe2UBNfRqyg6tH
+         ltjtNBJuPj0RT2mHtYfWhAEyREl21hlW2vildYINmN+NYHuacwy/M2T/SqD8ySfh
+         fbKR1GH+smK9TrBx9N5YizPzEbpst1SGIISwvB8CgYA/CHfXSidHQvwL5SXOXjfY
+         pAIC4uG1u1kpBA4tR3+lcBsO1KgT0thKPkTAZD1249MQFWuaj1S1clTfHDeO9zNd
+         qm+eKvCpNBq0llvE4/J96kOWcZ2GIxylpX19xUKKFL5AZ9qBOsS1v0kz4TBUPIGT
+         Ke1AbeU+nMPYqKB49wYdgwKBgQCzoRew9ZenNVQLndJ8TpfpUSp3dKgPgGPD1dlF
+         gWZ9dIKvDSGM3Zv9FMFFCZvQvXAl2mBLmsKHjCOk2xHh1tQMSQYdh3vU380uCiI+
+         3OjLj7291Fl5EmdPe6EEXC2QyCK2KYaxXDKlNjfjzCj82pw6zGEFLwGKjeT3uDWI
+         2xv1UwKBgFCjh3sLon3mgPdYdnnA8dg5nNdoKIuoSQYpimwDCQPNFx3e6FkC0nSr
+         gUeUVOAOL5h687Tx7NsUElELdeBL5MFSWsrnEedIXdSquuNqRpJxanBOXa+UZXVW
+         GPXp87Tt+21UPl2BogdTMKOvZ+dtzYQBohXP4Ke3IfBggBm8XrLM
+         -----END RSA PRIVATE KEY-----
+         
+
+        BUNDLE_ID: "ru.msk.sovetdoma"
+      flutter: 3.24.0
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Set up keychain to be used for codesigning using Codemagic CLI 'keychain' command
+        script: |
+          keychain initialize
+      - name: Fetch signing files
+        script: |
+          app-store-connect fetch-signing-files $BUNDLE_ID --type IOS_APP_STORE --create --log-api-calls --verbose
+      - name: Use system default keychain
+        script: |
+          keychain add-certificates
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles
+      - name: Get Flutter packages
+        script: |
+          cd . && flutter packages pub get
+      - name: Install pods
+        script: |
+          find . -name "Podfile" -execdir pod install \;
+      - name: Flutter build ipa and automatic versioning
+        script: |
+          flutter build ipa --release --no-tree-shake-icons \
+          --build-name=1.0.0 \
+          --build-number=1 \
+          --export-options-plist=/Users/builder/export_options.plist
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - flutter_drive.log
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+      scripts:
+        - name: HTTP notification
+          script: |
+            curl https://demoapi.flangapp.site/public/observe/notice?uid=dd27fc5f-c1a4-dbb6-ff8b-4e4c9f66de96
