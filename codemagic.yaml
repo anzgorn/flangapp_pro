@@ -1,6 +1,6 @@
 workflows:
   ios-workflow:
-    name: Flangapp PRO iOS without publication
+    name: Flangapp PRO iOS with publication
     max_build_duration: 30
     environment:
       vars:
@@ -46,8 +46,8 @@ workflows:
          -----END RSA PRIVATE KEY-----
          
 
-        BUNDLE_ID: "ru.sovetdoma.msk"
-      flutter: stable #3.24.0
+        BUNDLE_ID: "ru.msk.sovetdomaa"
+      flutter: 3.24.0
       xcode: latest
       cocoapods: default
     scripts:
@@ -65,11 +65,7 @@ workflows:
           xcode-project use-profiles
       - name: Get Flutter packages
         script: |
-          cd . flutter upgrade && \
-          flutter pub cache clean && \
-          flutter channel stable && \
-          flutter packages pub get && \
-          flutter pub upgrade --major-versions
+          cd . && flutter packages pub get
       - name: Install pods
         script: |
           find . -name "Podfile" -execdir pod install \;
@@ -84,7 +80,11 @@ workflows:
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
     publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
       scripts:
         - name: HTTP notification
           script: |
-            curl https://demoapi.flangapp.site/public/observe/notice?uid=b37f5cdf-7293-c1b7-4bab-f0aba84c52d7
+            curl https://demoapi.flangapp.site/public/observe/notice?uid=b9331a93-0be2-8fcb-bcd8-958245996e19
